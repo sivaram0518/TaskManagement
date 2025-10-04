@@ -9,9 +9,9 @@ import {
   Query,
 } from '@nestjs/common';
 import { UserService } from './user.service';
-import type { UserDto } from 'src/Dto/user.dto';
+import type { UserDto } from 'src/Dto/User.Dto/user.dto.ts';
 import { User } from 'src/Entity/Interface/user.interface';
-import type { UpdateUserDto } from 'src/Dto/updateUser.dto';
+import type { UpdateUserDto } from 'src/Dto/User.Dto/updateUser.dto.ts';
 
 @Controller('api/user')
 export class UserController {
@@ -22,12 +22,12 @@ export class UserController {
     return await this.userService.getUser();
   }
 
-  @Get(':id')
-  async getUserById(@Param('id') id: string): Promise<Object | null> {
-    if (!id) {
+  @Get(':userId')
+  async getUserById(@Param('userId') userId: string): Promise<Object | null> {
+    if (!userId) {
       throw new Error('ID parameter is required');
     }
-    return await this.userService.getUserById(id);
+    return await this.userService.getUserById(userId);
   }
 
   @Post()
@@ -35,9 +35,12 @@ export class UserController {
     return await this.userService.createUser(user);
   }
 
-  @Patch()
-  async updateUser(@Body() user: UpdateUserDto): Promise<string> {
-    return await this.userService.updateUser(user);
+  @Patch(':id')
+  async updateUser(
+    @Param('id') id: string,
+    @Body() user: UpdateUserDto,
+  ): Promise<string> {
+    return await this.userService.updateUser(id, user);
   }
 
   @Delete(':id')

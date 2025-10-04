@@ -1,0 +1,229 @@
+{
+	"info": {
+		"_postman_id": "a917f8f9-bd2e-4e38-a61a-7dd2f7b97566",
+		"name": "TaskManagement Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23354090",
+		"_collection_link": "https://trims0.postman.co/workspace/API-Testing~d88a7524-96d7-48ee-bbbb-f137e6f86311/collection/23354090-a917f8f9-bd2e-4e38-a61a-7dd2f7b97566?action=share&source=collection_link&creator=23354090"
+	},
+	"item": [
+		{
+			"name": "GetUsers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/api/user/users",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"user",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetUserById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/api/user/68de87dca47c1cf4b4dc3f40",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"user",
+						"68de87dca47c1cf4b4dc3f40"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PostUser",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"username\": \"rama\",\r\n  \"email\": \"ramya@example.com\",\r\n  \"password\": \"securePassword123\",\r\n  \"firstName\": \"ramya\",\r\n  \"lastName\": \"siva\",\r\n  \"createdDate\": \"2025-10-01T12:00:00.000Z\",\r\n  \"updatedDate\": \"2025-10-01T12:00:00.000Z\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/user",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateUser",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"ramya@example.com\",\r\n  \"password\": \"ramya@Password123\",\r\n  \"firstName\": \"ramya\",\r\n  \"lastName\": \"siva\",\r\n  \"updatedDate\": \"2025-10-01T12:00:00.000Z\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/user/68de9faf7fc2b06afb4e318c",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"user",
+						"68de9faf7fc2b06afb4e318c"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RemoveUser",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/api/user/68dcf37f78042a8d233c1b0a",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"user",
+						"68dcf37f78042a8d233c1b0a"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetTasks",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/task",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"task"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetTasksFilterStatus",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/task?status=open",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"task"
+					],
+					"query": [
+						{
+							"key": "status",
+							"value": "open"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetTaskByUserId",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/task/user/68dcf37f78042a8d233c1b0b",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"task",
+						"user",
+						"68dcf37f78042a8d233c1b0b"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateTask",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"title\": \"Task API Project\",\r\n  \"description\": \"Complete the Task API project.\",\r\n  \"status\": \"OPEN\",\r\n  \"priority\": \"MEDIUM\",\r\n  \"dueDate\": \"2025-10-10T12:00:00.000Z\",\r\n  \"createdAt\": \"2025-10-02T09:00:00.000Z\",\r\n  \"updatedAt\": \"2025-10-02T09:00:00.000Z\",\r\n  \"user_Id\": \"68de9f527fc2b06afb4e3184\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/task",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"task"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "baseURL",
+			"value": "",
+			"type": "default"
+		}
+	]
+}

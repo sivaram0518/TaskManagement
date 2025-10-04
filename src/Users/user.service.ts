@@ -1,9 +1,9 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { User } from 'src/Entity/Interface/user.interface';
-import { UserDto } from 'src/Dto/user.dto';
-import { UpdateUserDto } from 'src/Dto/updateUser.dto';
+import { UserDto } from 'src/Dto/User.Dto/user.dto';
+import { UpdateUserDto } from 'src/Dto/User.Dto/updateUser.dto';
 
 @Injectable()
 export class UserService {
@@ -13,8 +13,8 @@ export class UserService {
     return await this.UserModel.find();
   }
 
-  async getUserById(id: string): Promise<Object | null> {
-    return await this.UserModel.findById(id);
+  async getUserById(userId: string): Promise<Object | null> {
+    return await this.UserModel.find({ user_id: userId });
   }
 
   async createUser(user: UserDto): Promise<User> {
@@ -22,16 +22,14 @@ export class UserService {
     return newUser.save();
   }
 
-  async updateUser(updateUser: UpdateUserDto): Promise<string> {
-    const result = await this.UserModel.findOneAndUpdate(
-      { email: updateUser.email },
-      updateUser,
-      { new: true },
-    );
+  async updateUser(id: string, updateUser: UpdateUserDto): Promise<string> {
+    const result = await this.UserModel.findByIdAndUpdate(id, updateUser, {
+      new: true,
+    });
     if (result) {
       return 'User updated successfully';
     } else {
-      throw new Error('User not found');
+      throw new NotFoundException('User not found');
     }
   }
 
@@ -40,7 +38,7 @@ export class UserService {
     if (result) {
       return 'User has been deleted';
     } else {
-      return 'User not found';
+      throw new NotFoundException('User not found');
     }
   }
 }
